@@ -17,7 +17,8 @@ jobs:
         with:
           node-version: 18
           cache: yarn
-
+      - name: Set yarn berry
+        run: yarn set version berry
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Test build website
