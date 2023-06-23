@@ -18,7 +18,7 @@ jobs:
           node-version: 18
           cache: yarn
       - name: Install docusaurus
-        run: yarn global add docusaurus-init
+        run: yarn dlx docusaurus-init
       - name: Set yarn berry
         run: yarn set version berry    
       - name: Install dependencies
