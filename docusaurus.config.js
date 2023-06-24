@@ -20,7 +20,6 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'mobulaio', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
-
   trailingSlash: true,
 
   onBrokenLinks: 'throw',
