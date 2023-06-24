@@ -21,7 +21,7 @@ const config = {
   organizationName: 'mobulaio', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
 
-  trailingSlash: false,
+  trailingSlash: true,
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
