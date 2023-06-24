@@ -8,6 +8,12 @@
 .docusaurus
 .cache-loader
 
+.yarn
+
+.pnp.cjs
+.pnp.loader.mjs
+.yarnrc.yml
+
 # Misc
 .DS_Store
 .env.local
