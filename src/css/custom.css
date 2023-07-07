@@ -6,25 +6,154 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #00001f;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-color-scheme: light;
+
+  /* Colors. */
+  --ifm-dark-value: 10%;
+  --ifm-darker-value: 15%;
+  --ifm-darkest-value: 30%;
+  --ifm-light-value: 15%;
+  --ifm-lighter-value: 30%;
+  --ifm-lightest-value: 50%;
+
+  /*
+  This seems like a lot, but we want to ensure enough contrast.
+  Goal is to have a min score of 3 on https://www.myndex.com/APCA/fullmatrix
+  For fontWeight 400 + score 3, the cell must show a value < 16px (fontsize we use in places like alerts)
+  See also https://github.com/facebookincubator/infima/issues/55#issuecomment-884023075
+   */
+  --ifm-contrast-background-value: 90%;
+  --ifm-contrast-foreground-value: 70%;
+  /* Using slightly different values for dark mode */
+  --ifm-contrast-background-dark-value: 70%;
+  --ifm-contrast-foreground-dark-value: 90%;
+
+  --ifm-color-primary: #3578e5;
+  --ifm-color-secondary: #ebedf0;
+  --ifm-color-success: #00a400;
+  --ifm-color-info: #54c7ec;
+  --ifm-color-warning: #ffba00;
+  --ifm-color-danger: #fa383e;
+
+  @each $color in (primary, secondary, success, info, warning, danger) {
+    --ifm-color-$(color)-dark: color-mod(
+      var(--ifm-color-$(color)) shade(var(--ifm-dark-value))
+    );
+    --ifm-color-$(color)-darker: color-mod(
+      var(--ifm-color-$(color)),
+      shade(var(--ifm-darker-value))
+    );
+    --ifm-color-$(color)-darkest: color-mod(
+      var(--ifm-color-$(color)),
+      shade(var(--ifm-darkest-value))
+    );
+    --ifm-color-$(color)-light: color-mod(
+      var(--ifm-color-$(color)),
+      tint(var(--ifm-light-value))
+    );
+    --ifm-color-$(color)-lighter: color-mod(
+      var(--ifm-color-$(color)),
+      tint(var(--ifm-lighter-value))
+    );
+    --ifm-color-$(color)-lightest: color-mod(
+      var(--ifm-color-$(color)),
+      tint(var(--ifm-lightest-value))
+    );
+    --ifm-color-$(color)-contrast-background: color-mod(
+      var(--ifm-color-$(color)),
+      tint(var(--ifm-contrast-background-value))
+    );
+    --ifm-color-$(color)-contrast-foreground: color-mod(
+      var(--ifm-color-$(color)),
+      shade(var(--ifm-contrast-foreground-value))
+    );
+  }
+
+  --ifm-color-white: #fff;
+  --ifm-color-black: #000;
+
+  --ifm-color-gray-0: var(--ifm-color-white);
+  --ifm-color-gray-100: #f5f6f7;
+  --ifm-color-gray-200: #ebedf0;
+  --ifm-color-gray-300: #dadde1;
+  --ifm-color-gray-400: #ccd0d5;
+  --ifm-color-gray-500: #bec3c9;
+  --ifm-color-gray-600: #8d949e;
+  --ifm-color-gray-700: #606770;
+  --ifm-color-gray-800: #444950;
+  --ifm-color-gray-900: #1c1e21;
+  --ifm-color-gray-1000: var(--ifm-color-black);
+
+  --ifm-color-emphasis-0: var(--ifm-color-gray-0);
+  --ifm-color-emphasis-100: var(--ifm-color-gray-100);
+  --ifm-color-emphasis-200: var(--ifm-color-gray-200);
+  --ifm-color-emphasis-300: var(--ifm-color-gray-300);
+  --ifm-color-emphasis-400: var(--ifm-color-gray-400);
+  --ifm-color-emphasis-500: var(--ifm-color-gray-500);
+  --ifm-color-emphasis-600: var(--ifm-color-gray-600);
+  --ifm-color-emphasis-700: var(--ifm-color-gray-700);
+  --ifm-color-emphasis-800: var(--ifm-color-gray-800);
+  --ifm-color-emphasis-900: var(--ifm-color-gray-900);
+  --ifm-color-emphasis-1000: var(--ifm-color-gray-1000);
+
+  /* Base. */
+  --ifm-color-content: var(--ifm-color-emphasis-900);
+  --ifm-color-content-inverse: var(--ifm-color-emphasis-0);
+  --ifm-color-content-secondary: #525860;
+
+  --ifm-background-color: transparent; /* Body's background. */
+  --ifm-background-surface-color: var(--ifm-color-content-inverse);
+  --ifm-global-border-width: 1px;
+  --ifm-global-radius: 0.4rem;
+
+  --ifm-hover-overlay: rgba(0, 0, 0, 0.05);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #00001f;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-scheme: dark;
+
+  --ifm-color-emphasis-0: var(--ifm-color-gray-1000);
+  --ifm-color-emphasis-100: var(--ifm-color-gray-900);
+  --ifm-color-emphasis-200: var(--ifm-color-gray-800);
+  --ifm-color-emphasis-300: var(--ifm-color-gray-700);
+  --ifm-color-emphasis-400: var(--ifm-color-gray-600);
+  --ifm-color-emphasis-500: var(--ifm-color-gray-500);
+  --ifm-color-emphasis-600: var(--ifm-color-gray-400);
+  --ifm-color-emphasis-700: var(--ifm-color-gray-300);
+  --ifm-color-emphasis-800: var(--ifm-color-gray-200);
+  --ifm-color-emphasis-900: var(--ifm-color-gray-100);
+  --ifm-color-emphasis-1000: var(--ifm-color-gray-0);
+
+  --ifm-background-color: #1b1b1d;
+  --ifm-background-surface-color: #242526;
+
+  --ifm-hover-overlay: rgba(255, 255, 255, 0.05);
+
+  --ifm-color-content: #e3e3e3;
+  --ifm-color-content-secondary: rgba(255, 255, 255, 1);
+
+  --ifm-breadcrumb-separator-filter: invert(64%) sepia(11%) saturate(0%)
+    hue-rotate(149deg) brightness(99%) contrast(95%);
+
+  --ifm-code-background: rgba(255, 255, 255, 0.1);
+
+  --ifm-scrollbar-track-background-color: #444444;
+  --ifm-scrollbar-thumb-background-color: #686868;
+  --ifm-scrollbar-thumb-hover-background-color: #7a7a7a;
+
+  --ifm-table-stripe-background: rgba(255, 255, 255, 0.07);
+
+  --ifm-toc-border-color: var(--ifm-color-emphasis-200);
+
+  @each $color in (primary, secondary, success, info, warning, danger) {
+    --ifm-color-$(color)-contrast-background: color-mod(
+      var(--ifm-color-$(color)),
+      shade(var(--ifm-contrast-background-dark-value))
+    );
+    --ifm-color-$(color)-contrast-foreground: color-mod(
+      var(--ifm-color-$(color)),
+      tint(var(--ifm-contrast-foreground-dark-value))
+    );
+  }
 }
